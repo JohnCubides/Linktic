@@ -1,0 +1,54 @@
+@startuml
+
+' Visual settings
+skinparam shadowing true
+skinparam rectangle {
+    BackgroundColor white
+    BorderColor black
+    RoundCorner 15
+}
+skinparam component {
+    BackgroundColor<<AuthS>> #A9DFBF
+    BorderColor black
+}
+
+' Define top-to-bottom flow
+top to bottom direction
+
+' Frontend Layer
+package "Frontend Layer" {
+    frame "Frontend\n(SvelteKit)" as FE
+}
+
+' API Gateway and Serverless Layer
+package "API Gateway & Serverless Layer" {
+    node "API Gateway\n(Spring Cloud Gateway)" as APIGW
+    queue "Real-time Updates\n(WebSocket)" as SF
+}
+
+' Backend Services Layer
+package "Backend Services Layer" {
+    component "Product Catalog Service\n(Java - Spring Boot)" as PCS
+    component "Order Management Service\n(.NET - ASP.NET Core)" as OMS
+    component "Auth Service\n(Java - Spring Boot)" as AuthS <<AuthS>>
+}
+
+' Database Layer
+package "Database Layer" {
+    database "PostgreSQL Database" as DB
+}
+
+' Connections between components
+FE --> APIGW : API Requests
+APIGW --> PCS : /products/*
+APIGW --> OMS : /orders/*
+APIGW --> AuthS : /auth/*
+
+PCS --> DB : Read/Write Products
+OMS --> DB : Read/Write Orders
+AuthS --> DB : Read/Write Users
+
+OMS --> SF : Trigger Real-time Updates
+FE <-- SF : Real-time Updates
+
+@enduml
