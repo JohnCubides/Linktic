@@ -7,8 +7,16 @@ skinparam rectangle {
     BorderColor black
     RoundCorner 15
 }
+
+' Custom colors for each component
 skinparam component {
+    BackgroundColor<<Frontend>> #ADD8E6
+    BackgroundColor<<APIGateway>> #FFD700
+    BackgroundColor<<WebSocket>> #FF6347
+    BackgroundColor<<ProductCatalog>> #98FB98
+    BackgroundColor<<OrderService>> #87CEEB
     BackgroundColor<<AuthS>> #A9DFBF
+    BackgroundColor<<Database>> #DDA0DD
     BorderColor black
 }
 
@@ -17,25 +25,25 @@ top to bottom direction
 
 ' Frontend Layer
 package "Frontend Layer" {
-    frame "Frontend\n(SvelteKit)" as FE
+    frame "Frontend\n(SvelteKit)" as FE <<Frontend>>
 }
 
 ' API Gateway and Serverless Layer
 package "API Gateway & Serverless Layer" {
-    node "API Gateway\n(Spring Cloud Gateway)" as APIGW
-    queue "Real-time Updates\n(WebSocket)" as SF
+    node "API Gateway\n(Spring Cloud Gateway)" as APIGW <<APIGateway>>
+    queue "Real-time Updates\n(WebSocket)" as SF <<WebSocket>>
 }
 
 ' Backend Services Layer
 package "Backend Services Layer" {
-    component "Product Catalog Service\n(Java - Spring Boot)" as PCS
-    component "Order Management Service\n(.NET - ASP.NET Core)" as OMS
+    component "Product Catalog Service\n(Java - Spring Boot)" as PCS <<ProductCatalog>>
+    component "Order Management Service\n(.NET - ASP.NET Core)" as OMS <<OrderService>>
     component "Auth Service\n(Java - Spring Boot)" as AuthS <<AuthS>>
 }
 
 ' Database Layer
 package "Database Layer" {
-    database "PostgreSQL Database" as DB
+    database "PostgreSQL Database" as DB <<Database>>
 }
 
 ' Connections between components
