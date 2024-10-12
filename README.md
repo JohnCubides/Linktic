@@ -125,24 +125,11 @@ All code and documentation are stored in a GitHub repository. The repository inc
 
 ### Installation
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/ecommerce-platform.git
-   cd ecommerce-platform
-   ```
-
-2. **Backend Setup**:
-   - Follow the instructions in `/backend/README.md` to set up the product catalog and order management services.
-
-3. **Database Setup**:
-   - Execute the migration scripts located in `/migrations` to set up the database schema.
-
-4. **Frontend Setup**:
-   - Navigate to the `/frontend` directory and run:
-     ```bash
-     npm install
-     npm run dev
-     ```
+- [Front](https://github.com/JohnCubides/Linktic-FrontSvelteKit): Front SvelteKit.
+- [ApiGateway](https://github.com/JohnCubides/Linktic-ApiGateway): Gateway.
+- [API de Autenticación](https://github.com/JohnCubides/Linktic-AuthService): Auth Service.
+- [Api Product](https://github.com/JohnCubides/Linktic-ProductService): Product Service.
+- [Api Order](https://github.com/JohnCubides/Linktic-OrderService): Order Service.
 
 ### Running the Application
 
